@@ -10,8 +10,18 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+
 <script>
- 
+
+ var config = {
+    apiKey: "AIzaSyCLhWfqjDajNsVTJC_Lru4UEwSU4sBS3eE",
+    authDomain: "utlaundry-b55ef.firebaseapp.com",
+    databaseURL: "https://utlaundry-b55ef.firebaseio.com",
+    projectId: "utlaundry-b55ef",
+    storageBucket: "utlaundry-b55ef.appspot.com",
+    messagingSenderId: "597694421566"
+  };
+  firebase.initializeApp(config);
 
 var floorNum = "01";
 
@@ -24,56 +34,33 @@ function fillTable(floorNumTemp){
 
      // Get a reference to the database service
     try {
-         // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCLhWfqjDajNsVTJC_Lru4UEwSU4sBS3eE",
-    authDomain: "utlaundry-b55ef.firebaseapp.com",
-    databaseURL: "https://utlaundry-b55ef.firebaseio.com",
-    projectId: "utlaundry-b55ef",
-    storageBucket: "utlaundry-b55ef.appspot.com",
-    messagingSenderId: "597694421566"
-  };
-  firebase.initializeApp(config);
-    
-   // var database = firebase.database();
-    /*
-    var userDataRef = firebase.database().ref("UserData").orderByKey();
-    userDataRef.once("value").then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-    var key = childSnapshot.key;
-    var childData = childSnapshot.val();              
-
-    var available = childSnapshot.val().available;
-    var time = childSnapshot.val().time;
-    
-    availableHTML = "available"+floorNum;
-    document.getElementById(availableHTML).innerHTML = available;
-    
-    /*
-
-    document.getElementById("available01").innerHTML = available1;
-    document.getElementById("time01").innerHTML = time1;
-
-    document.getElementById("available02").innerHTML = available2;
-    document.getElementById("time02").innerHTML = time2;
-
-    document.getElementById("available03").innerHTML = available3;
-    document.getElementById("time03").innerHTML = time3;
-
-    document.getElementById("available04").innerHTML = available4;
-    document.getElementById("time04").innerHTML = time4;
-
-    document.getElementById("available05").innerHTML = available5;
-    document.getElementById("time05").innerHTML = time5;
-
-    document.getElementById("available06").innerHTML = available6;
-    document.getElementById("time06").innerHTML = time6;
-
         
     
+    var database = firebase.database();
+    
+    var userDataRef = firebase.database().ref("Machine");
+    
+    
+    userDataRef.once("value").then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+    
+    var machineNum = childSnapshot.key;
+
+    var parseFloorNum = machineNum.substring(0,2);
+    var machineNum = machineNum.substring(2);
+    if(parseFloorNum == floorNum){
+        var time = childSnapshot.val();              
+
+    
+    
+        availableHTML = "time"+machineNum;
+        document.getElementById(availableHTML).innerHTML = time;
+    }
+    
+    
     });
     });
-    */
+    
     } catch {
         
     document.getElementById('available01').innerHTML = "connection failed";
@@ -230,22 +217,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <table class="w3-table-all">
                 <tr>
                   <th>Washer #</th>
-                  <th>Available</th>
-                  <th>Time</th>
+                  <th>Time Left</th>
                 </tr>
                 <tr>
                   <td input type = "text" id = "washer1">1</td>
-                  <td input type = "text" id = "available01">true</td>
                   <td input type = "text" id ="time01">0</td>
                 </tr>
                 <tr>
                     <td input type = "text" id = "washer2">2</td>
-                    <td input type = "text" id = "available02">true</td>
                     <td input type = "text" id ="time02">0</td>
                 </tr>
                 <tr>
                     <td input type = "text" id = "washer3">3</td>
-                    <td input type = "text" id = "available03">true</td>
                     <td input type = "text" id ="time03">0</td>
                 </tr>
                 
@@ -253,21 +236,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                 <tr>
                   <th>Dryer #</th>
                   <th></th>
-                  <th></th>
                 </tr>
                     <tr>
                         <td input type = "text" id = "washer4">1</td>
-                        <td input type = "text" id = "available04">true</td>
                         <td input type = "text" id ="time04">0</td>
                       </tr>
                       <tr>
                           <td input type = "text" id = "washer5">2</td>
-                          <td input type = "text" id = "available05">true</td>
                           <td input type = "text" id ="time05">0</td>
                       </tr>
                       <tr>
                           <td input type = "text" id = "washer6">3</td>
-                          <td input type = "text" id = "available06">true</td>
                           <td input type = "text" id ="time06">0</td>
                       </tr>
                     
