@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+<script>
+var floorNum = "01";
+(function(){
+    // Initialize Firebase
+    var config = {
+    apiKey: "apiKey",
+    authDomain: "projectId.firebaseapp.com",
+    databaseURL: "https://databaseName.firebaseio.com",
+    storageBucket: "bucket.appspot.com"
+  };
+  firebase.initializeApp(config);
+
+}());
+
+function fillTable(floorNumTemp){
+    floorNum = floorNumTemp;
+    document.getElementById("floorNum").innerHTML = "Floor " +floorNumTemp;
+    
+
+
+     // Get a reference to the database service
+    try {
+    var database = firebase.database();
+    var userDataRef = firebase.database().ref("UserData").orderByKey();
+    userDataRef.once("value").then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+    var key = childSnapshot.key;
+    var childData = childSnapshot.val();              
+
+    var available = childSnapshot.val().available;
+    var time = childSnapshot.val().time;
+    
+    availableHTML = "available"+floorNum;
+    document.getElementById(availableHTML).innerHTML = available;
+    
+    /*
+
+    document.getElementById("available01").innerHTML = available1;
+    document.getElementById("time01").innerHTML = time1;
+
+    document.getElementById("available02").innerHTML = available2;
+    document.getElementById("time02").innerHTML = time2;
+
+    document.getElementById("available03").innerHTML = available3;
+    document.getElementById("time03").innerHTML = time3;
+
+    document.getElementById("available04").innerHTML = available4;
+    document.getElementById("time04").innerHTML = time4;
+
+    document.getElementById("available05").innerHTML = available5;
+    document.getElementById("time05").innerHTML = time5;
+
+    document.getElementById("available06").innerHTML = available6;
+    document.getElementById("time06").innerHTML = time6;
+
+        */
+    
+    });
+    });
+
+    } catch {
+        
+    document.getElementById('available01').innerHTML = "connection failed";
+ 
+    }
+    
+    //document.getElementById("available1").innerHTML = "made it";
+
+
+}
+function refresh(){
+    
+
+    fillTable(floorNum);
+
+
+
+}
+</script>
+
+
+<script>
+    function changeColor(newColor) {
+  var elem = document.getElementById('para');
+  elem.style.color = newColor;
+}
+</script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<style>
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .navbar a {
+        float: left;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    
+    .dropdown .dropbtn {
+        font-size: 16px;    
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+    
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: red;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    </style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  
+  <div class="dropdown">
+    <button class="dropbtn">Floors 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        <button onclick= "fillTable('01','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 1</button>
+        <button onclick= "fillTable('02','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 2</button>
+        <button onclick= "fillTable('03','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 3</button>
+        <button onclick= "fillTable('04','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 4</button>
+        <button onclick= "fillTable('05','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 5</button>
+        <button onclick= "fillTable('06','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 6</button>
+        <button onclick= "fillTable('07','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 7</button>
+        <button onclick= "fillTable('08','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 8</button>
+        <button onclick= "fillTable('09','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 9</button>
+        <button onclick= "fillTable('10','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 10</button>
+        <button onclick= "fillTable('11','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 11</button>
+        <button onclick= "fillTable('12','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 12</button>
+        <button onclick= "fillTable('13','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 13</button>
+        <button onclick= "fillTable('14','')" class = "w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Floor 14</button>
+
+    </div>
+  </div> 
+
+  
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">UT Laundry</h1>
+  <p class="w3-xlarge"></p>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+        <div class="w3-third w3-center">
+                <img src="styles/washer.png" alt="Sandwich" style="width:50%">
+        </div>
+    
+      <h1 class = "w3-center">Please Choose Your Floor to Check Availability of Washers/Dryers</h1>
+
+      
+     
+   
+  </div>
+</div>
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container" id = "floor1">
+    <div class="w3-content">
+     
+  
+      
+        <h1 input type = "text" id = "floorNum">Floor</h1>
+  
+        <table class="w3-table-all">
+                <tr>
+                  <th>Washer #</th>
+                  <th>Available</th>
+                  <th>Time</th>
+                </tr>
+                <tr>
+                  <td input type = "text" id = "washer1">1</td>
+                  <td input type = "text" id = "available01">true</td>
+                  <td input type = "text" id ="time01">0</td>
+                </tr>
+                <tr>
+                    <td input type = "text" id = "washer2">2</td>
+                    <td input type = "text" id = "available02">true</td>
+                    <td input type = "text" id ="time02">0</td>
+                </tr>
+                <tr>
+                    <td input type = "text" id = "washer3">3</td>
+                    <td input type = "text" id = "available03">true</td>
+                    <td input type = "text" id ="time03">0</td>
+                </tr>
+                
+            
+                <tr>
+                  <th>Dryer #</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                    <tr>
+                        <td input type = "text" id = "washer4">1</td>
+                        <td input type = "text" id = "available04">true</td>
+                        <td input type = "text" id ="time04">0</td>
+                      </tr>
+                      <tr>
+                          <td input type = "text" id = "washer5">2</td>
+                          <td input type = "text" id = "available05">true</td>
+                          <td input type = "text" id ="time05">0</td>
+                      </tr>
+                      <tr>
+                          <td input type = "text" id = "washer6">3</td>
+                          <td input type = "text" id = "available06">true</td>
+                          <td input type = "text" id ="time06">0</td>
+                      </tr>
+                    
+                  </table>
+
+                  <button onclick= "refresh()" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Refresh</button>
+
+      
+    </div>
+  </div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
