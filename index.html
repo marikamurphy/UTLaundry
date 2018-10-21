@@ -9,20 +9,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
 <script>
-var floorNum = "01";
-(function(){
-    // Initialize Firebase
-    var config = {
-    apiKey: "AIzaSyAbSrmuQtW_ds3--baxo9yIY2MvlYIAJpU",
-    authDomain: "utlaundry-b55ef.firebaseapp.com",
-    databaseURL: "https://utlaundry-b55ef.firebaseio.com",
-    projectId: "utlaundry-b55ef"
-  };
-  firebase.initializeApp(config);
+ 
 
-}());
+var floorNum = "01";
+
 
 function fillTable(floorNumTemp){
     floorNum = floorNumTemp;
@@ -32,7 +24,18 @@ function fillTable(floorNumTemp){
 
      // Get a reference to the database service
     try {
-    var database = firebase.database();
+         // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCLhWfqjDajNsVTJC_Lru4UEwSU4sBS3eE",
+    authDomain: "utlaundry-b55ef.firebaseapp.com",
+    databaseURL: "https://utlaundry-b55ef.firebaseio.com",
+    projectId: "utlaundry-b55ef",
+    storageBucket: "utlaundry-b55ef.appspot.com",
+    messagingSenderId: "597694421566"
+  };
+  firebase.initializeApp(config);
+    
+   // var database = firebase.database();
     /*
     var userDataRef = firebase.database().ref("UserData").orderByKey();
     userDataRef.once("value").then(function(snapshot) {
