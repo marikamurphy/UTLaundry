@@ -15,10 +15,10 @@ var floorNum = "01";
 (function(){
     // Initialize Firebase
     var config = {
-    apiKey: "apiKey",
-    authDomain: "projectId.firebaseapp.com",
-    databaseURL: "https://databaseName.firebaseio.com",
-    storageBucket: "bucket.appspot.com"
+    apiKey: "AIzaSyAbSrmuQtW_ds3--baxo9yIY2MvlYIAJpU",
+    authDomain: "utlaundry-b55ef.firebaseapp.com",
+    databaseURL: "https://utlaundry-b55ef.firebaseio.com",
+    projectId: "utlaundry-b55ef"
   };
   firebase.initializeApp(config);
 
@@ -33,6 +33,7 @@ function fillTable(floorNumTemp){
      // Get a reference to the database service
     try {
     var database = firebase.database();
+    /*
     var userDataRef = firebase.database().ref("UserData").orderByKey();
     userDataRef.once("value").then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
@@ -65,11 +66,11 @@ function fillTable(floorNumTemp){
     document.getElementById("available06").innerHTML = available6;
     document.getElementById("time06").innerHTML = time6;
 
-        */
+        
     
     });
     });
-
+    */
     } catch {
         
     document.getElementById('available01').innerHTML = "connection failed";
